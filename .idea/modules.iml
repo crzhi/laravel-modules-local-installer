@@ -117,6 +117,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/object-reflector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-php73" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/zys/zipper" />
+      <excludeFolder url="file://$MODULE_DIR$/Modules/Bbs" />
+      <excludeFolder url="file://$MODULE_DIR$/Modules/Cms" />
+      <excludeFolder url="file://$MODULE_DIR$/Modules/Mall" />
+      <excludeFolder url="file://$MODULE_DIR$/Modules/Wechat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

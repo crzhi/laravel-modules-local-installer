@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gallery Plugin</title>
+    <title>插件市场</title>
     <style>
         body{
             font-size: 10px;

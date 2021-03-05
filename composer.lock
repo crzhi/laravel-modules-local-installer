@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7df057a1b7c8240d6075ed43f5480e19",
+    "content-hash": "4c89f614a36024d9ec9ccb0440681766",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4943,6 +4943,71 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.9.1"
             },
             "time": "2020-07-08T17:02:28+00:00"
+        },
+        {
+            "name": "zys/zipper",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fengzi91/Zipper.git",
+                "reference": "584e936dce085c07688f5264b46a96ccb6b78911"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fengzi91/Zipper/zipball/584e936dce085c07688f5264b46a96ccb6b78911",
+                "reference": "584e936dce085c07688f5264b46a96ccb6b78911",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "*",
+                "illuminate/filesystem": ">=5.0",
+                "illuminate/support": ">=5.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Chumper\\Zipper\\ZipperServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zipper": "Chumper\\Zipper\\Zipper"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Chumper\\Zipper\\": "src/Chumper/Zipper"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Plaschke",
+                    "email": "github@nilsplaschke.de",
+                    "homepage": "http://nilsplaschke.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This is a little neat helper for the ZipArchive methods with handy functions",
+            "homepage": "http://github.com/fengzi91/zipper",
+            "keywords": [
+                "archive",
+                "laravel",
+                "zip"
+            ],
+            "support": {
+                "issues": "https://github.com/fengzi91/Zipper/issues",
+                "source": "https://github.com/fengzi91/Zipper/tree/1.0.1"
+            },
+            "time": "2020-04-15T01:49:33+00:00"
         }
     ],
     "packages-dev": [

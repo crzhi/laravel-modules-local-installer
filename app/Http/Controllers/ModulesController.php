@@ -1,7 +1,8 @@
 <?php
 
-
 namespace App\Http\Controllers;
+
+use Chumper\Zipper\Facades\Zipper;
 use Nwidart\Modules\Facades\Module;
 use Illuminate\Http\Request;
 
@@ -27,12 +28,9 @@ class ModulesController
             if ($file->getClientOriginalExtension() !== "zip") {
                 return redirect('/')->with('error', '请上传zip格式的压缩包！');
             }else{
-                $destinationPath = 'storage/uploads/';
-                $extension = $file->getClientOriginalExtension();
-                $fileName=md5(time().rand(1,1000)).'.'.$extension;
-                $file->move($destinationPath,$fileName);
-                $filePath = asset($destinationPath.$fileName);
-                dd("文件路径：".asset($destinationPath.$fileName));
+                $zipper = Zipper::make($file);
+                $zipper->extractTo(base_path('/Modules/'));
+                return redirect('/')->with('success', '上传成功');
             }
         }else{
             return redirect('/')->with('error', '没有可上传的插件，请重试！');

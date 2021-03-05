@@ -1,3 +1,5 @@
 {
-    "Test": false
+    "Test": false,
+    "Bbs": false,
+    "Cms": false
 }
