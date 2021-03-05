@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ModulesController
 {
+    /**
+     * 插件首页
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $modules = Module::all();
@@ -18,23 +22,20 @@ class ModulesController
     /**
      * 上传插件
      * @param Request $request
-     * @param string $name 插件标识
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function upload(Request $request)
     {
-        if($request->hasFile('file')&&$request->file('file')->isValid()){
-            $file=$request->file('file');
-            if ($file->getClientOriginalExtension() !== "zip") {
-                return redirect('/')->with('error', '请上传zip格式的压缩包！');
-            }else{
-                $zipper = Zipper::make($file);
-                $zipper->extractTo(base_path('/Modules/'));
-                return redirect('/')->with('success', '上传成功');
-            }
-        }else{
+        if(!$request->hasFile('file') || !$request->file('file')->isValid()){
             return redirect('/')->with('error', '没有可上传的插件，请重试！');
         }
+        $file=$request->file('file');
+        if ($file->getClientOriginalExtension() !== "zip") {
+            return redirect('/')->with('error', '请上传zip格式的压缩包！');
+        }
+        $zipper = Zipper::make($file);
+        $zipper->extractTo(base_path('/Modules/'));
+        return redirect('/')->with('success', '上传成功');
     }
 
     /**

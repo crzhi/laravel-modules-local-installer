@@ -62,13 +62,13 @@
         }
         .table {
             display: grid;
-            grid-template-columns: 100px 100px 1fr 100px 100px 100px;
+            grid-template-columns: 100px 100px 100px 1fr 100px 100px 100px;
         }
         .table .table-cell {
             border-bottom: 1px solid #bebebe;
             padding: 8px;
         }
-        .table .table-cell:nth-child(-n+6) {
+        .table .table-cell:nth-child(-n+7) {
             border-top: 1px solid #bebebe;
         }
     </style>
@@ -86,13 +86,15 @@
 </header>
 <main class="main">
     <div class="table">
-        <div class="table-cell">名称</div>
+        <div class="table-cell">插件</div>
+        <div class="table-cell">文件夹</div>
         <div class="table-cell">作者</div>
         <div class="table-cell">描述</div>
         <div class="table-cell">版本</div>
         <div class="table-cell">状态</div>
         <div class="table-cell">操作</div>
         @foreach($modules as $i => $module)
+            <div class="table-cell">{{ $module->get('alias') }}</div>
             <div class="table-cell">{{ $module->getName() }}</div>
             <div class="table-cell">{{ $module->get('author') }}</div>
             <div class="table-cell">{{ $module->getDescription() }}</div>
