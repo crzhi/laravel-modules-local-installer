@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Chumper\Zipper\Facades\Zipper;
 use Nwidart\Modules\Facades\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 
 class ModulesController
@@ -34,7 +35,23 @@ class ModulesController
             return redirect('/')->with('error', '请上传zip格式的压缩包！');
         }
         $zipper = Zipper::make($file);
-        $zipper->extractTo(base_path('/Modules/'));
+        if(!count($zipper->listFiles())) {
+            return redirect('/')->with('error', '请勿上传空压缩包！');
+        }
+        $firstFileName = $zipper->listFiles()[0];
+        if(!strpos($firstFileName, '/')) {
+            return redirect('/')->with('error', '请勿上传单文件压缩包！');
+        }
+        $folder = substr($firstFileName,0,strrpos($firstFileName,'/'));
+        if(Module::has($folder)) {
+            return redirect('/')->with('error', '插件已存在，请勿重复上传！');
+        }
+        $zipper->extractTo(base_path('Modules'));
+        $zipper->delete();
+        if(!Module::has($folder)) {
+            File::deleteDirectory(base_path('Modules/' . $folder . '/'));
+            return redirect('/')->with('error', '不是一个有效的模块插件！');
+        }
         return redirect('/')->with('success', '上传成功');
     }
 
@@ -45,8 +62,7 @@ class ModulesController
      */
     public function enable($name)
     {
-        $module = Module::find($name);
-        $module->enable();
+        Module::find($name)->enable();
         return redirect('/')->with('success', '启用成功');
     }
 
@@ -57,8 +73,7 @@ class ModulesController
      */
     public function disable($name)
     {
-        $module = Module::find($name);
-        $module->disable();
+        Module::find($name)->disable();
         return redirect('/')->with('success', '禁用成功');
     }
 
@@ -69,8 +84,7 @@ class ModulesController
      */
     public function remove($name)
     {
-        $module = Module::find($name);
-        $module->delete();
+        Module::find($name)->delete();
         return redirect('/')->with('success', '卸载成功');
     }
 }
